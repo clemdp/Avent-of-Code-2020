@@ -14,6 +14,7 @@ int main(){
     int column5 = 0;
     int column7 = 0;
     int linenum = 0;
+    int column2 = 0;
     int cpt1 = 0;
     int cpt3 = 0;
     int cpt5 = 0;
@@ -22,24 +23,44 @@ int main(){
     while(input >> line){
         if (line[column1] == tree){
             cpt1++;
+            line[column1] = 'X';
+        } else {
+            line[column1] = 'O';
         }
         if (line[column3] == tree){
             cpt3++;
+            line[column3] = 'X';
+        }else {
+            line[column3] = 'O';
         } 
         if (line[column5] == tree){
             cpt5++;
+            line[column5] = 'X';
+        }else {
+            line[column5] = 'O';
         }
         if (line[column7] == tree){
             cpt7++;
+            line[column7] = 'X';
+        }else {
+            line[column7] = 'O';
         }
-        if ((linenum%2 == 0) && (line[column1] == tree)){
-            cpt2++;
+        if ( (linenum%2) == 0) {
+            column2 = (column2 + 1)%line.size();
+            std::cout << "column2 : " << column2 << std::endl;
+            if(line[column2] == tree){
+                cpt2++;
+                line[column2] = 'X';
+            }else {
+                line[column2] = 'O';
+            }
         }
         column1 = (column1 + 1)%line.size();
         column3 = (column3 + 3)%line.size();
         column5 = (column5 + 5)%line.size();
         column7 = (column7 + 7)%line.size();
         linenum++;
+        std::cout << "line " << linenum << ": " << line << std::endl;
     }
 
     double res = cpt1 * cpt3;
